@@ -4,6 +4,7 @@ import "./App.css";
 import TodoInput from "./components/todo-input";
 import List from "./components/List";
 
+
 function App() {
   const [list, setList] = useState([]);
   const addList = (inputText) => {
@@ -23,6 +24,7 @@ function App() {
           <TodoInput addList={addList} />
           <h1 className="app-heading">To-Do List</h1>
           <hr />
+          
           {list.map((list, i) => {
             return <List index={i} key={i} item={list} deleteItem={deleteItem} />;
           })}

@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 
 function TodoInput(props) {
-    const [input,setInput] = useState('');
+  const [input, setInput] = useState("");
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      props.addList(input); 
+      setInput("");
+    }
+  };
+
   return (
     <div className="input-container">
       <input
@@ -9,14 +17,18 @@ function TodoInput(props) {
         className="input-box-todo"
         placeholder="Enter Task"
         value={input}
-        onChange={e=>{
-            setInput(e.target.value)
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown} 
+      />
+      <button
+        className="add-btn"
+        onClick={() => {
+          props.addList(input);
+          setInput("");
         }}
-      ></input>
-      <button className="add-btn" onClick={()=>{
-        props.addList(input)
-        setInput("")
-      }}>+</button>
+      >
+        +
+      </button>
     </div>
   );
 }
